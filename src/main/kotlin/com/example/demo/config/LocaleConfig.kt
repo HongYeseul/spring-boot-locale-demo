@@ -12,7 +12,7 @@ class LocaleConfig {
     @Bean
     fun localeResolver(): LocaleResolver {
         val resolver = AcceptHeaderLocaleResolver().apply {
-            // 🛡️ 보안 & 성능 - DB에 있는 언어만 처리
+            // 지원하는 언어
             setSupportedLocales(
                 listOf(
                     Locale.ENGLISH,    // "en"
@@ -21,7 +21,7 @@ class LocaleConfig {
                     Locale.CHINESE     // "zh"
                 )
             )
-            // 🎯 예측 가능한 기본값 - 매우 중요!
+            // 기본으로 전달할 언어
             setDefaultLocale(Locale.ENGLISH)
         }
 

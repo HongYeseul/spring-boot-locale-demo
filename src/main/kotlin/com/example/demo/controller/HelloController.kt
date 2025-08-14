@@ -10,7 +10,7 @@ import java.util.Locale
 class HelloController(
     private val messageSource: MessageSource
 ) {
-    @GetMapping("/hello", produces = ["text/plain;charset=UTF-8"])
+    @GetMapping("/hello")
     fun hello(locale: Locale): String {
         val locale = LocaleContextHolder.getLocale()
         val text = messageSource.getMessage("hello", null, locale)

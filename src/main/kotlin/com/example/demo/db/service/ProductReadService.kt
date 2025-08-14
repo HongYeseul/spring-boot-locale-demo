@@ -9,17 +9,17 @@ import org.springframework.web.server.ResponseStatusException
 @Service
 class ProductReadService(
     private val productRepository: ProductRepository,
-    private val productLocRepo: ProductLocRepository,
+    private val productLocRepository: ProductLocRepository,
 ) {
     fun get(productId: Long, locale: String): ProductDto {
         val product = productRepository.findById(productId).orElseThrow {
             ResponseStatusException(HttpStatus.NOT_FOUND, "product not found")
         }
 
-        val loc = productLocRepo.findFirstByProduct_IdAndLocale(productId, locale)
+        val translatedProduct = productLocRepository.findFirstByProduct_IdAndLocale(productId, locale)
 
-        return if (loc != null) {
-            ProductDto(product.id!!, loc.title, loc.description)
+        return if (translatedProduct != null) {
+            ProductDto(product.id!!, translatedProduct.title, translatedProduct.description)
         } else {
             // 번역이 한 건도 없으면 기본값 사용
             ProductDto(product.id!!, product.defaultTitle, product.defaultDescription)
