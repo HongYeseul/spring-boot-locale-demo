@@ -15,7 +15,7 @@ class Product(
     val id: Long? = null,
 
     @Column(nullable = false, length = 255)
-    var sku: String,             // 비즈니스용 코드
+    var productCode: String,             // 비즈니스용 코드
 
     @Column(nullable = false, length = 255)
     var defaultTitle: String = "",

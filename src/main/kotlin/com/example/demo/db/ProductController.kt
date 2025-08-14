@@ -20,6 +20,8 @@ class ProductController(
     fun getProduct(
         @PathVariable id: Long,
         locale: Locale, // Spring이 자동으로 http 헤더의 locale 설정을 주입해줌
+        // @RequestHeader(name = "Accept-Language", defaultValue = "ko")
+        // String locale 처럼 @RequestHeader를 사용해서 직접 추출 할 수도 있음
     ): ResponseEntity<ProductDto> {
 
         val languageCode = locale.language.ifBlank { "en" }

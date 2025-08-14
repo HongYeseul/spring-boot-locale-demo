@@ -18,7 +18,7 @@ class ProductDataInitializer {
             return@CommandLineRunner
         }
 
-        val p = productRepo.save(Product(sku = "demo-001", defaultTitle = "Demo Product"))
+        val p = productRepo.save(Product(productCode = "demo-001", defaultTitle = "Demo Product"))
 
         locRepo.saveAll(
             listOf(
